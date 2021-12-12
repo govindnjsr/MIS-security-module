@@ -1,0 +1,86 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  /* background: linear-gradient(140deg, rgb(0, 0, 0)); */
+  background-image: url("image2.jpeg");
+  background-size: cover;
+}
+div.main {
+  width: 400px;
+  margin: 100px auto 0px auto;
+}
+h2 {
+  text-align: center;
+  padding: 20px;
+  font-family: sans-serif;
+}
+div.Sec {
+  background-color: rgb(248, 248, 248);
+  width: 140%;
+  font-size: 18px;
+  border-radius: 5px;
+  align-items: center;
+  border: 1px solid rgb(5, 4, 2);
+  /* box-shadow: 1px 2px 15px rgba(0, 0, 0, 0.3); */
+  color: rgb(8, 7, 7);
+}
+form#Sec {
+  margin: 40px;
+}
+label {
+  font-family: sans-serif;
+  font-size: 18px;
+  font-style: normal;
+}
+
+.button {
+  width: 150px;
+  font-size: 18px;
+  font-family: sans-serif;
+  border: none;
+  border-radius: 3px;
+  outline: 0;
+  padding: 17px;
+  background-color: rgb(248, 237, 221);
+  cursor: pointer;
+  border: 1px solid rgb(245, 234, 220);
+  box-shadow: 1px 1px 5px rgb(0, 0, 3);
+  display: inline-block;
+  margin-bottom: 20px;
+  margin-inline: 5px;
+}
+.button1 {
+  width: 315px;
+  font-size: 18px;
+  font-family: sans-serif;
+  border: none;
+  border-radius: 3px;
+  outline: 0;
+  padding: 17px;
+  background-color: rgb(248, 237, 221);
+  cursor: pointer;
+  border: 1px solid rgb(245, 234, 220);
+  box-shadow: 1px 1px 5px rgb(0, 0, 3);
+  display: inline-block;
+  margin-bottom: 20px;
+  margin-inline: 5px;
+}
+
+label,
+span,
+h2 {
+  /* text-shadow: 1px 1px 5px rgb(0, 0, 3); */
+  color: #fff;
+}
+.A {
+  margin-top: 100px;
+  display: block;
+  margin-right: 75px;
+}
+.B {
+  text-align: left;
+  padding: 20px;
+  /* margin: auto; */
+}

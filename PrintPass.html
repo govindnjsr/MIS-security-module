@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <html>
+    <head>
+      <link rel="stylesheet" href="PrintPass.css" />
+      <title>data</title>
+    </head>
+    <body>
+      <!-- //buttons and textboxes// -->
+      <div class="container">
+        <div class="title" style="text-align: center">NIT-JSR WELCOMES YOU</div>
+
+        <img
+          class="watermark center"
+          style="height: 100px; width: auto"
+          src="logoi.png"
+        />
+        <div class="title" style="text-align: center">Entry-Pass</div>
+        <div class="content">
+            <div class="user-details">
+              <div class="input-box">
+                <label for="Token NO">Token No.</label>
+                <input type="text" id="Tokenbox" class="form-control" placeholder="Enter the Token No." />
+              </div>
+
+              <div class="input-box">
+                <label for="Name">Name</label>
+                <input type="text" id="Namebox" class="form-control" placeholder="Enter the Name" />
+              </div>
+
+              <div class="input-box">
+                <label for="Purpose of visit">Purpose of visit</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="PV"
+                  placeholder="Enter the Purpose of visit"
+                />
+              </div>
+              <div class="input-box">
+                <label for="Gate No">Entry Gate No</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="GN"
+                  placeholder="Enter the Gate No"
+                />
+              </div>
+              <div class="input-box">
+                <label for="Date Of Visit">Date Of Visit</label>
+                <input
+                  type="date"
+                  class="form-control"
+                  id="DOV"
+                  placeholder="Enter the Date Of Visit"
+                />
+              </div>
+             
+            </div>     
+            
+
+            <button class="button" id="Serbtn">SEARCH</button>
+            <button class="button" id="Prbtn" onclick="window.print();">
+              PRINT
+            </button><br><br>
+         
+        </div>
+      </div>
+      <!-------Databse imports+config---->
+      <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js";
+        import {
+          getDatabase,
+          ref,
+          get,
+          set,
+          child,
+          update,
+          remove,
+        } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-database.js";
+
+        const firebaseConfig = {
+          apiKey: "AIzaSyABwvIzoPceWt-kaj_9h0euzzhaZEH1c3Q",
+          authDomain: "security-8e335.firebaseapp.com",
+          databaseURL: "https://security-8e335-default-rtdb.firebaseio.com",
+          projectId: "security-8e335",
+          storageBucket: "security-8e335.appspot.com",
+          messagingSenderId: "1060240863085",
+          appId: "1:1060240863085:web:8f3cd610b5797e32cef464",
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase();
+        //--references---//
+        var tokenno = document.getElementById("Tokenbox");
+        var namebox = document.getElementById("Namebox");
+        var Pur = document.getElementById("PV");
+        var DateV = document.getElementById("DOV");
+        var TimeV = document.getElementById("TOVI");
+        var GateN = document.getElementById("GN");
+        var serBtn = document.getElementById("Serbtn");
+
+        //-------search data function----///
+        document.getElementById("Serbtn").addEventListener('click',function (){
+          const dbref = ref(db);
+          get(child(dbref, "UsersToken/" + tokenno.value+GateN.value+DateV.value))
+            .then((snapshot) => {
+              if (snapshot.exists()) {
+                namebox.value = snapshot.val().NameOfStd;
+                Pur.value = snapshot.val().Purpose_OF_VISIT;
+              } else {
+                alert("No data Found/ Please check GateNO/Token/DATE");
+              }
+            })
+
+            .catch((error) => {
+              alert("unsucessful,error" + error);
+            });
+        })
+      </script>
+    </body>
+  </html>
+</html>

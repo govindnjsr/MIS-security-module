@@ -1,0 +1,254 @@
+<!-- //Name Amrit Tudu -->
+<!-- Reg NO-2020PGCACA10// -->
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="guard_regstyle.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <!-- //buttons and textboxes// -->
+    <div class="main">
+      <div class="Attendence">
+        <h2>Registration Form</h2> 
+      <div class="content">
+          <div class="user-details">
+            <div class="input-box">
+              <label >Identity/Staff No</label>
+              <input
+                type="text"
+                id="identityno"
+                placeholder="Enter id no"
+                required
+              />
+            </div>
+            <div class="input-box">
+              <label >Full Name</label>
+              <input
+                type="text"
+                id="name"
+                placeholder="Enter Guard name"                
+              />
+            </div>
+            <div class="input-box">
+              <label >Email ID</label>
+              <input type="text" id="email" placeholder="Enter email id" />
+            </div>
+            <div class="input-box">
+              <label >Date Of Birth</label>
+              <input
+                type="date"
+                id="DOB"
+                placeholder="Enter date of birth"
+                required
+              />
+            </div>
+            <div class="input-box">
+              <label >Blood Group</label>
+              <input
+                type="text"
+                id="BG"
+                placeholder="Enter blood group"
+                required
+              />
+            </div>
+            <div class="input-box">
+              <label >Address</label>
+              <input
+                type="text"
+                id="Add"
+                placeholder="Enter address"
+                required
+              />
+            </div>
+            <div class="input-box">
+              <label >Adhaar ID</label>
+              <input
+                type="text"
+                id="adhar"
+                placeholder="Enter adhaar"
+                required
+              />
+            </div>
+            <div class="input-box">
+              <label >Duty Allocate</label>
+              <input
+                type="text"
+                id="dutyAA"
+                placeholder="Enter location"
+                required
+              />
+            </div>
+
+            <div class="input-box">
+              <label >Date of Joining</label>
+              <input
+                type="date"
+                id="DOJ"
+                placeholder="Enter date of joining"
+                required
+              />
+            </div>
+            <div class="input-box">
+              <label >Phone no</label>
+              <input
+                type="text"
+                id="phoneno"
+                placeholder="Enter contact no "
+                required
+              />
+            </div>
+          </div>
+            <label>GENDER:- </label>
+            <select id="Gen">
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other</option></select
+            >
+          <br><br>
+          <input class="button" type="submit" id="regbtn" value="Register" />
+          <input class="button" type="submit" id="upbtn" value="Update" />
+          <input class="button" type="submit" id="serbtn" value="Search" />
+          <br><br>
+          <h4>NOTE: Please Enter The Identity/Staff No for Search</h4>
+      
+      
+      </div>
+    </div>
+    <!-------Database imports+config---->
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js";
+      import {
+        getDatabase,
+        ref,
+        get,
+        set,
+        child,
+        update,
+        remove,
+      } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-database.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyABwvIzoPceWt-kaj_9h0euzzhaZEH1c3Q",
+        authDomain: "security-8e335.firebaseapp.com",
+        databaseURL: "https://security-8e335-default-rtdb.firebaseio.com",
+        projectId: "security-8e335",
+        storageBucket: "security-8e335.appspot.com",
+        messagingSenderId: "1060240863085",
+        appId: "1:1060240863085:web:8f3cd610b5797e32cef464",
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const db = getDatabase();
+      //--references---//
+      var Name = document.getElementById("name");
+      var Email = document.getElementById("email");
+      var DateOB = document.getElementById("DOB");
+      var Bloodg = document.getElementById("BG");
+      var Adress = document.getElementById("Add");
+      var Adharno = document.getElementById("adhar");
+      var DutyA = document.getElementById("dutyAA");
+      var Identity = document.getElementById("identityno");
+      var DateOJ = document.getElementById("DOJ");
+      var Mobile = document.getElementById("phoneno");
+      var Gen = document.getElementById("Gen");
+      var regBtn = document.getElementById("regbtn");
+      var serBtn = document.getElementById("serbtn");
+      var upBtn = document.getElementById("upbtn");
+
+
+      //----------register data function---------//
+      function InsertData() {
+        const dbref = ref(db);
+        get(child(dbref, "Registration/" + Identity.value))
+          .then((snapshot) => {
+            if (snapshot.exists()) {
+              alert("Guard Already Exist");
+            } else {
+              if(Name.value!=""
+            && Email.value!=""&&DateOB.value!=""&&Bloodg.value!=""&&Adress.value!=""&& Adharno.value!=""&&
+          DutyA.value!=""&&Identity.value!=""&& DateOJ.value!="" && Mobile.value!=""&& Gen.value!="")
+              {set(ref(db, "Registration/" + Identity.value), {
+          Guard_Name: Name.value,
+          Email_ID: Email.value,
+          Date_OF_Birth: DateOB.value,
+          Blood_G: Bloodg.value,
+          Address: Adress.value,
+          Adhar_NO: Adharno.value,
+          Duty_Allocation:DutyA.value,
+          ID: Identity.value,
+          Date_OF_JOIN: DateOJ.value,
+          Mobile_NO: Mobile.value,
+          Gender: Gen.value,
+        })
+          .then(() => {
+            alert("User Registered");
+          })
+          .catch((error) => {
+            alert("unsucessful,error" + error);
+          });
+        }
+        else
+        {
+          alert("Please fill all Fields");
+        }
+              
+            }
+          })
+        
+      }
+      //-------search data function----///
+      function SearchData() {
+        const dbref = ref(db);
+        get(child(dbref, "Registration/" + Identity.value))
+          .then((snapshot) => {
+            if (snapshot.exists()) {
+              Name.value = snapshot.val().Guard_Name;
+              Email.value = snapshot.val().Email_ID;
+              DateOB.value = snapshot.val().Date_OF_Birth;
+              Bloodg.value = snapshot.val().Blood_G;
+              Adress.value = snapshot.val().Address;
+              Adharno.value = snapshot.val().Adhar_NO;
+              DutyA.value = snapshot.val().Duty_Allocation;
+              Identity.value = snapshot.val().ID;
+              DateOJ.value = snapshot.val().Date_OF_JOIN;
+              Mobile.value = snapshot.val().Mobile_NO;
+              Gen.value = snapshot.val().Gender;
+            } else {
+              alert("Guard Not found");
+            }
+          })
+          .catch((error) => {
+            alert("unsucessful,error" + error);
+          });
+      }
+      //-------------------------------update data---------------------------------//
+      function UpdateData() {
+        update(ref(db, "Registration/" + Identity.value), {
+          Guard_Name: Name.value,
+          Email_ID: Email.value,
+          Date_OF_Birth: DateOB.value,
+          Blood_G: Bloodg.value,
+          Address: Adress.value,
+          Adhar_NO: Adharno.value,
+          Duty_Allocation: DutyA.value,
+          Date_OF_JOIN: DateOJ.value,
+          Mobile_NO: Mobile.value,
+          Gender: Gen.value,
+        })
+          .then(() => {
+            alert("data update sucessfully");
+          })
+          .catch((error) => {
+            alert("unsucessful,error" + error);
+          });
+      }
+      //---assign events to btn---//
+      regBtn.addEventListener("click", InsertData);
+      serBtn.addEventListener("click", SearchData);
+      upBtn.addEventListener("click", UpdateData);
+    </script>
+  </body>
+</html>

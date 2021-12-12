@@ -1,0 +1,117 @@
+<!-- //Name Ayush Tripathi  -->
+<!-- Reg NO-2020PGCACA19// -->
+<html>
+    <head>
+    
+        <title>all firebase data in table</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="Datatablee.css" type="text/css" /> 
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    </head>
+    <body>
+        <!-- //button// -->
+        <div class="center">
+          <label >Enter DATE</label>
+         <input type="date" id="Datebox" >
+         <button class="button" id="Selbtn">SEARCH</button>
+        </div>    
+    <br>
+    <!-- //structure of table// -->
+        <div class="container mt-3">
+        <table class="table table-dark">
+        <thead>
+            <th>SR.NO</th>
+            <th>Token_NO</th>
+            <th>Name</th>
+            <th>TIME_OF_VISIT</th>
+            <th>GATE_NO</th>            
+        </thead>
+        <tbody id="tbody1">
+
+        </tbody> 
+    </table>
+</div>
+    <!-- //Database import+config// -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js";
+        import { getDatabase,ref,get,set,child,update,remove,onValue,query,limitToFirst,limitToLast,orderByChild,equalTo } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-database.js";
+
+        const firebaseConfig = {
+          apiKey: "AIzaSyABwvIzoPceWt-kaj_9h0euzzhaZEH1c3Q",
+          authDomain: "security-8e335.firebaseapp.com",
+          databaseURL: "https://security-8e335-default-rtdb.firebaseio.com",
+          projectId: "security-8e335",
+          storageBucket: "security-8e335.appspot.com",
+          messagingSenderId: "1060240863085",
+          appId: "1:1060240863085:web:8f3cd610b5797e32cef464"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig); 
+        const db=getDatabase();
+        
+     
+        
+//------------extracting data --------------------//
+var tbody=document.getElementById('tbody1');
+var serBtn=document.getElementById("Selbtn");
+var DATE=document.getElementById("Datebox");
+var sn=0;
+function AddItemToTable(TN,NAME,TOV,CD)
+{
+   
+   var trow=document.createElement('tr');
+   var td1=document.createElement('td');
+   var td2=document.createElement('td');
+   var td3=document.createElement('td');
+   var td4=document.createElement('td');
+   var td5=document.createElement('td');
+   td1.innerHTML=++sn;
+   td2.innerHTML=TN;
+   td3.innerHTML=NAME;
+   td4.innerHTML=TOV;
+   td5.innerHTML=CD;
+
+   
+   trow.appendChild(td1);
+   trow.appendChild(td2);
+   trow.appendChild(td3);
+   trow.appendChild(td4);
+   trow.appendChild(td5);
+   tbody.appendChild(trow);   
+}
+//Add element function//
+function AddAllItemsToTable(TheStudent)
+{
+    tbody.innerHTML="";
+    TheStudent.forEach(element => {
+        AddItemToTable(element.Token_NO,element.NameOfStd,element.TIME_OF_VISIT,element.GATE_NO);
+    });
+}
+//Get element function//
+function GetallDataOnce()
+{
+    const que=query(ref(db,"UsersToken"),orderByChild("Date_OF_visit"),equalTo(DATE.value));
+    get(que)
+    .then((snapshot)=>{
+        if(snapshot.exists()){
+        var students=[];
+        snapshot.forEach(childSnapshot=>{
+            students.push(childSnapshot.val());
+       
+        })
+        AddAllItemsToTable(students);
+    }
+    else
+    {
+            alert("NO DATA FOUND");
+           }
+
+    })
+    
+}
+//---assign event to btn---//
+serBtn.addEventListener('click',GetallDataOnce);
+        </script>
+    </body>
+</html>

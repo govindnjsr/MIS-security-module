@@ -1,0 +1,191 @@
+/*<!-- //Name Yogita Moteka  -->
+<!-- Reg NO-2020PGCACA98// -->*/
+
+* {
+    margin: 0;
+    padding: 10;
+  }
+  body {
+    background-color: rgb(187, 186, 186);
+    background-size: 200%;
+  }
+  div.main {
+    width: 700px;
+    height: 600px;
+    margin: 50px auto 50px auto;
+  }
+  .buttonPage
+{
+    width:150px;
+    height:30px;
+    margin:0px 0px 0px 0px;
+    padding:0px 0px 0px 0px;
+    background-color:gray;
+	border:0px solid #2957c4;
+	color:white;
+	overflow:hidden;
+	font-family:Arial; 
+    font-size:12px; 
+    font-weight:bold;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    
+}
+.buttonPage:hover
+{
+    border:0px solid #075319;
+    background-color:#0a6b43;
+    
+}
+  h2 {
+    text-align: center;
+    padding: 20px;
+    font-family: sans-serif;
+  }
+  .content .user-details {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 20px 0 12px 0;
+  }
+  .button {
+    background-color: grey; 
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 5px 25px;
+    border: 1px solid rgb(191, 196, 202);
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+  }
+  .content .user-details {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 20px 0 12px 0;
+  }
+  .user-details .input-box {
+    margin-bottom: 15px;
+    width: calc(100% / 2 - 20px);
+  }
+  div.Attendence {
+    background-color: white;
+    width: 120%;
+    height: 120%;
+    padding: 0px 20px;
+    font-size: 15px;
+    border-radius: 10px;
+    align-items: center;
+    border: 1px solid rgb(75, 74, 74);
+    box-shadow: 10px 20px 15px rgba(0, 0, 0, 0.3);
+    color: rgb(8, 7, 7);
+  }
+  form#Attendence {
+    margin: 40px;
+  }
+  label {
+    font-family: sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    
+  }
+  input#Tokenbox {
+    width: 350px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    outline: 0;
+    padding: 11px;
+    background-color: #fff;
+  }
+  input#Namebox {
+    width: 350px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    outline: 0;
+    padding: 11px;
+    background-color: #fff;
+  }
+  input#PI {
+    width: 350px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    outline: 0;
+    padding: 11px;
+    background-color: #fff;
+  }
+  input#CN {
+    width: 350px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    outline: 0;
+    padding: 11px;
+    background-color: #fff;
+  }
+  
+  input#PV {
+    width: 350px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    outline: 0;
+    padding: 11px;
+    background-color: #fff;
+  }
+  input#TOV {
+    width: 350px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    outline: 0;
+    padding: 11px;
+    background-color: #fff;
+  }
+  input#VD {
+    width: 350px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    outline: 0;
+    padding: 11px;
+    background-color: #fff;
+  }
+  input#LD {
+    width: 350px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    outline: 0;
+    padding: 11px;
+    background-color: #fff;
+  }
+  input#DOV {
+    width: 350px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    outline: 0;
+    padding: 11px;
+    background-color: #fff;
+  }
+  input#GN {
+    width: 350px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    outline: 0;
+    padding: 11px;
+    background-color: #fff;
+  }
+  input#TOVI {
+    width: 350px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    outline: 0;
+    padding: 11px;
+    background-color: #fff;
+  }
+
+  
+  label,
+  span,
+  h2 {
+    color: black;
+  }
+  

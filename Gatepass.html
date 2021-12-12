@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+   <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
+    <link rel="stylesheet" href="Gatepass.css" type="text/css" /> 
+    <title>Attendance Page</title>
+  </head>
+  <body >
+    <!-- //buttons and textboxes// -->
+        <div class="main">
+      <div class="Attendence">
+        <h2>Gate Pass</h2>       
+          <div class="content">
+            <div class="user-details">
+            <div class="input-box">
+                <label for="Token NO">Token NO </label><br>
+                <input type="text" id="Tokenbox" class="form-control"  placeholder="Enter the Token NO"/>
+              </div><br>  
+              <div class="input-box">
+                <label for="Name">Name</label><br>
+                <input type="text" id="Namebox" class="form-control"  placeholder="Enter the Name"/>
+              </div><br>
+              <div class="input-box">
+                <label for="Personal ID">Personal ID </label><br>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="PI"
+                  placeholder="Enter the Personal ID"
+                />
+              </div><br>
+  
+              <div class="input-box">
+                <label for="Contact No">Contact No</label><br>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="CN"
+                  placeholder="Enter the Contact No"
+                />
+              </div><br>
+  
+              <div class="input-box">
+                <label for="Purpose of visit">Purpose of visit </label><br>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="PV"
+                  placeholder="Enter the Purpose of visit"
+                />
+              </div><br>
+  
+              <div class="input-box">
+                <label for="Type of Visitor">Type of Visitor </label><br>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="TOV"
+                  placeholder="Enter the Type of Visitor"
+                />
+              </div><br>
+  
+              <div class="input-box">
+                <label for="Vehicle Details">Vehicle Details </label><br>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="VD"
+                  placeholder="Enter the Vehicle Details"
+                />
+              </div><br>
+  
+              <div class="input-box">
+                <label for="Luggage Details">Luggage Details</label><br>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="LD"
+                  placeholder="Enter the Luggage Details"
+                />
+              </div><br>
+  
+              <div class="input-box">
+                <label for="Date Of Visit">Date Of Visit</label><br>
+                <input
+                  type="date"
+                  class="form-control"
+                  id="DOV"
+                  placeholder="Enter the Date Of Visit"
+                />
+              </div><br>
+  
+              <div class="input-box">
+                <label for="Gate No">Gate No</label><br>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="GN"
+                  placeholder="Enter the Gate No"
+                />
+              </div><br>
+  
+              <div class="input-box">
+                <label for="Time Of Visit">Time Of Visit </label><br>
+                <input
+                  type="time"
+                  class="form-control"
+                  id="TOVI"
+                  placeholder="Enter the Time Of Visit"
+                />
+              </div><br>
+              </div></div>
+              <label>GENDER:- </label>
+            <select id="Genbox">
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other</option></select
+            ><br /><br />
+              <button  class="buttonPage" id="Subbtn">Submit</button>
+          <button  class="buttonPage" id="Serbtn">SEARCH</button>
+          <input
+          class="buttonPage"
+            type="button"
+            onclick="location.href='PrintPass.html';"
+            value="PRINT"
+          /><br><br>
+          <h4>NOTE: Please Enter The Token_NO and GATE_NO and Date_of_Visit for Search</h4>
+            </div>
+    </div>
+   
+  
+
+  <!-------Database imports+config---->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js";
+  import { getDatabase,ref,get,set,child,update,remove } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-database.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyABwvIzoPceWt-kaj_9h0euzzhaZEH1c3Q",
+    authDomain: "security-8e335.firebaseapp.com",
+    databaseURL: "https://security-8e335-default-rtdb.firebaseio.com",
+    projectId: "security-8e335",
+    storageBucket: "security-8e335.appspot.com",
+    messagingSenderId: "1060240863085",
+    appId: "1:1060240863085:web:8f3cd610b5797e32cef464"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig); 
+  const db=getDatabase();
+  //--references---//
+  var guardid=document.getElementById("guardID");
+      var tokenno = document.getElementById("Tokenbox");
+      var namebox = document.getElementById("Namebox");
+      var genbox = document.getElementById("Genbox");
+      var PerId = document.getElementById("PI");
+      var ConNo = document.getElementById("CN");
+      var Pur = document.getElementById("PV");
+      var TypeV = document.getElementById("TOV");
+      var VehD = document.getElementById("VD");
+      var LugD = document.getElementById("LD");
+      var DateV = document.getElementById("DOV");
+      var GateN = document.getElementById("GN");
+      var TimeV = document.getElementById("TOVI");
+
+   var subBtn=document.getElementById("Subbtn");
+   var srcBtn=document.getElementById("Serbtn");
+
+    //----------insert data function---------//
+    function InsertData()
+   {
+       if(tokenno.value!=""
+          && namebox.value!=""&&genbox.value!=""&&PerId.value!=""&&TypeV.value!=""&&VehD.value!=""&&
+          LugD.value!=""&&DateV.value!=""&&GateN.value!="" && TimeV.value!="")
+       {set(ref(db,"UsersToken/"+ tokenno.value+GateN.value+DateV.value),{
+        Token_NO: tokenno.value,
+          NameOfStd: namebox.value,
+          Gender: genbox.value,
+          Personal_ID: PerId.value,
+          Contact_No: ConNo.value,
+          Purpose_OF_VISIT: Pur.value,
+          Type_OF_VISITOR: TypeV.value,
+          Vehicle_Details: VehD.value,
+          Luggage_Details: LugD.value,
+          Date_OF_visit: DateV.value,
+          GATE_NO: GateN.value,
+          TIME_OF_VISIT: TimeV.value
+       })
+       .then(()=>{
+           alert("data store sucessfully");
+       })
+
+       .catch((error)=>{
+           alert("unsucessful,error"+error);
+       });}
+       else
+       {
+           alert("please fill all Fields")
+       }
+   }
+   
+    //-------search data function----///
+    function SearchData(){
+       const dbref=ref(db);
+       get(child(dbref,"UsersToken/"+tokenno.value+GateN.value+DateV.value)).then((snapshot)=>{
+           if(snapshot.exists()){
+              namebox.value = snapshot.val().NameOfStd;
+              genbox.value = snapshot.val().Gender;
+              PerId.value = snapshot.val().Personal_ID;
+              ConNo.value = snapshot.val().Contact_No;
+              Pur.value = snapshot.val().Purpose_OF_VISIT;
+              TypeV.value = snapshot.val().Type_OF_VISITOR;
+              VehD.value = snapshot.val().Vehicle_Details;
+              LugD.value = snapshot.val().Luggage_Details;
+              DateV.value = snapshot.val().Date_OF_visit;
+              GateN.value = snapshot.val().GATE_NO;
+              TimeV.value = snapshot.val().TIME_OF_VISIT;
+           }
+           else
+           {
+               alert("Pass Not Found");
+           }
+       })
+       .catch((error)=>{
+        alert("unsucessful,error"+error);
+       })
+   }
+   //---assign events to btn---//
+   subBtn.addEventListener('click',InsertData);
+   srcBtn.addEventListener('click',SearchData);
+  
+</script>
+  </body>
+</html>

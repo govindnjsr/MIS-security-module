@@ -1,0 +1,161 @@
+<!-- //Name Suraj Kumar -->
+<!-- Reg NO-2020PGCACA90// -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+   <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
+    <link rel="stylesheet" href="attendstyle.css" type="text/css" /> 
+    <title>Attendance Page</title>
+    
+  </head>
+  <body >
+    <!-- //buttons and text boxes// -->
+        <div class="main">
+          <div class="Attendence">
+        <h2>Guard Attendance</h2>       
+            <div class="form-group">
+            <label for="Guard ID">Guard ID:</label>
+            <input type="text" id="guardID" class='form-control'>
+            </div> <br>
+            <div class="form-group">
+              <label for="time">Entry Date:</label>
+              <input type="date" id="date" class='form-control' placeholder="DD/MM/YYYY">
+              </div> <br>
+            <div class="form-group">
+              <label for="time">Entry time:</label>
+              <input type="time" id="Entime" class='form-control'>
+              </div> <br>
+              <div class="form-group">
+                <label for="time">Exit time:</label>
+                <input type="time" id="Extime" class='form-control'>
+                </div><br>
+            <div class="form-group">
+              <label for="Name">Guard Name:</label>
+              <input type="text" id="guardname" class='form-control'>
+              </div> <br>
+              <div class="form-group">
+                <label for="Duty Location">Duty Location:</label>
+                <input type="text" id="guardloc" class='form-control'>
+                </div> <br>
+                         
+          <button  class="button" id="Subbtn">Submit</button>
+          <button  class="button" id="Serbtn">SEARCH</button>
+          <button  class="button" id="Upbtn">UPDATE</button><br><br>
+          <h4>NOTE: Please Enter The Guard_ID and Entry_DATE for Search</h4>
+        
+        </div>
+    </div>
+  
+
+    <!-------Database imports+config---->
+<script type="module">
+ 
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js";
+  import { getDatabase,ref,get,set,child,update,remove } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-database.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyABwvIzoPceWt-kaj_9h0euzzhaZEH1c3Q",
+    authDomain: "security-8e335.firebaseapp.com",
+    databaseURL: "https://security-8e335-default-rtdb.firebaseio.com",
+    projectId: "security-8e335",
+    storageBucket: "security-8e335.appspot.com",
+    messagingSenderId: "1060240863085",
+    appId: "1:1060240863085:web:8f3cd610b5797e32cef464"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig); 
+  const db=getDatabase();
+  //--references---//
+  var guardid=document.getElementById("guardID");
+  var guardn=document.getElementById("guardname");
+  var guardl=document.getElementById("guardloc");
+  var dt=document.getElementById("date"); 
+  var enTime=document.getElementById("Entime");
+  var exTime=document.getElementById("Extime");  
+
+   var subBtn=document.getElementById("Subbtn");
+   var srcBtn=document.getElementById("Serbtn");
+   var upBtn=document.getElementById("Upbtn");
+
+    //----------submit data function---------//
+    function InsertData()
+   {   
+    const dbref=ref(db);
+       get(child(dbref,"attendance/"+guardid.value+dt.value)).then((snapshot)=>
+       { if(snapshot.exists()){
+        alert("Data can't be modify");
+           }
+           else
+           {
+            set(ref(db,"attendance/"+guardid.value+dt.value),{
+         Guard_ID:guardid.value,
+         Guard_Name:guardn.value,
+         Guard_Location:guardl.value,
+         DATE:dt.value,
+         Entry_time:enTime.value
+       })
+       .then(()=>{
+           alert("data store sucessfully");
+       })
+       .catch((error)=>{
+           alert("unsucessful,error"+error);
+       });
+           }
+      
+      })
+   }
+   
+    //-------search data function----///
+    function SearchData(){
+       const dbref=ref(db);
+       get(child(dbref,"attendance/"+guardid.value+dt.value)).then((snapshot)=>{
+           if(snapshot.exists()){
+               guardn.value=snapshot.val().Guard_Name;
+               guardl.value=snapshot.val().Guard_Location;
+               enTime.value=snapshot.val().Entry_time;
+               exTime.value=snapshot.val().Exit_Time;
+           }
+           else
+           {
+               alert("Guard Not Present");
+           }
+       })
+       .catch((error)=>{
+        alert("unsucessful,error"+error);
+       })
+   }
+   //-------Update data function----------//
+   function UpdateData()
+   {
+    if(exTime.value!="")
+       {set(ref(db,"attendance/"+guardid.value+dt.value),{
+        Guard_ID:guardid.value,
+         Guard_Name:guardn.value,
+         Guard_Location:guardl.value,
+         DATE:dt.value,
+         Entry_time:enTime.value,
+         Exit_Time:exTime.value
+       })
+       .then(()=>{
+           alert("data updated sucessfully");
+       })
+       .catch((error)=>{
+           alert("unsucessful,error"+error);
+       });
+      }
+      else
+      {
+        alert("Response already recorded");
+      }
+   }
+   //---assign events to btn---//
+   subBtn.addEventListener('click',InsertData);
+   srcBtn.addEventListener('click',SearchData);
+   upBtn.addEventListener('click',UpdateData);
+  
+</script>
+  </body>
+</html>
