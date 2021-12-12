@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<head><title>
+	MIS Login
+</title><link href="loginstyle.css" rel="stylesheet" type="text/css" /></head>
+<!-- structur of login page -->
+<body style="background-color: rgb(204, 196, 196);">
+        <div class="main" >
+                <center>
+                    <br /><br /><br />
+                    <table class="BoxShadow" width="70%" style="min-height: 70vh;">
+                        <tr>
+                            <td style="width: 35%; background-color:white;" valign="middle" align="center">
+                                <center><strong>LOGIN</strong></center><br /><br />
+                                <table cellpadding="5">
+                                    <tr>
+                                        <td>User Name
+                                        </td>
+                                        <td>
+                                            <input name="txtUserName" type="text" id="emaillogin" class="TextBoxPage" style="text-align: left;" />
+                                            <span id="UserNameRequired" title="User Name is required." class="failureNotification" style="visibility:hidden;">*</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Password
+                                        </td>
+                                        <td>
+                                            <input name="txtPassword" type="password" id="passlogin" class="TextBoxPage" style="text-align: left;" />
+                                            <span id="PasswordRequired" title="Password is required." class="failureNotification" style="visibility:hidden;">*</span>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <br />
+                               <span id="lbllogin" style="color:rgb(134, 101, 101);"></span><br />
+                                <input type="submit" name="btnLogin" value="Login" id="login" class="buttonPage" />
+                                <br />
+                                <br />
+                                
+                            </td>
+                            <td style="width: 65%; background-color:rgb(31, 37, 54);" valign="middle" align="center">
+                                <img src="jsrlogo.png" alt="nit,jamshedpur" height="default" width="default" /><br />
+                                <br />
+                                <strong style="font-size: 25px; font-family:'Roboto'; text-decoration: underline; padding-bottom: 50px; color: white;">NATIONAL INSTITUTE OF TECHNOLOGY, JAMSHEDPUR</strong><br />
+                                <br />
+                                
+                                <h2 style="font-size: 20px; font-family:'Roboto'; font-weight: bolder; color: white ">Department of Computer Application</h2>
+                                <br />
+                            </td>
+                        </tr>
+                    </table>
+                </center>
+        </div>
+</form>
+
+<!-- BACKEND OF LOGIN PAGE -->
+<script type="module">
+           
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js";
+    const firebaseConfig = {
+      apiKey: "AIzaSyABwvIzoPceWt-kaj_9h0euzzhaZEH1c3Q",
+      authDomain: "security-8e335.firebaseapp.com",
+      databaseURL: "https://security-8e335-default-rtdb.firebaseio.com",
+      projectId: "security-8e335",
+      storageBucket: "security-8e335.appspot.com",
+      messagingSenderId: "1060240863085",
+      appId: "1:1060240863085:web:8f3cd610b5797e32cef464"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+//sign in function//
+document.getElementById("login").addEventListener('click',function()
+{
+
+const email1=document.getElementById("emaillogin").value
+const password1=document.getElementById("passlogin").value
+
+signInWithEmailAndPassword(auth, email1, password1)
+.then((userCredential) => {   
+const user = userCredential.user;
+window.location.href="FrontPage.html";
+
+})
+.catch((error) => {
+const errorCode = error.code;
+const errorMessage = error.message;
+console.log(errorCode+errorMessage); 
+alert("Please Check Your Email or Password");      
+});
+})
+</script>
+</body>
+</html>

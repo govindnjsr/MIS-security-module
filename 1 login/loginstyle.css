@@ -1,0 +1,359 @@
+/*<-- //Name Gobind  -->
+<!-- Reg NO-2020PGCACA38// -->*/
+body   
+{
+    background: #F5F5F5;
+    font-size: .80em;
+    font-family: "Helvetica Neue", "Lucida Grande", "Segoe UI", Arial, Helvetica, Verdana, sans-serif;
+    margin: 0px;
+    padding: 0px;
+    color: Black;
+}
+
+a:link, a:visited
+{
+    text-decoration: none;
+    color: #034af3;
+    font-weight: 700;
+}
+
+a:hover
+{
+    color: #1d60ff;
+    text-decoration: underline;
+}
+
+a:active
+{
+    color: #034af3;
+}
+
+p
+{
+    margin-bottom: 10px;
+    line-height: 1.6em;
+}
+
+
+
+h1, h2,h3
+{
+    font-size: 1.5em;
+    color: #666666;
+    font-variant: small-caps;
+    text-transform: none;
+    font-weight: 200;
+    margin-bottom: 0px;
+}
+
+h1
+{
+    font-size: 1.6em;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+}
+
+h2
+{
+    font-size: 1.5em;
+    font-weight: 600;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+}
+
+h3
+{
+    font-size: 1.2em;
+}
+
+.rightColumn > h1, .rightColumn > h2, .leftColumn > h1, .leftColumn > h2
+{
+    margin-top: 0px;
+}
+
+.page
+{
+    width: 100%;
+    background-color: #fff;
+    margin: auto auto 0px auto;
+}
+
+.header
+{
+    position: relative;
+    margin: 0px;
+    background: #FFF;
+    color: #4e5766;
+    width: 100%;
+    font-family:Georgia;
+    font-size: 35px;
+    
+}
+
+.header h1
+{
+    font-weight: 700;
+    margin: 0px;
+    padding: 0px 0px 0px 20px;
+    color: #f9f9f9;
+    border: none;
+    line-height: 2em;
+    font-size: 2em;
+}
+
+.main
+{
+    padding: 0px 12px;
+    margin: 12px 8px 8px 8px;
+    min-height: 450px;
+}
+
+.leftCol
+{
+    padding: 6px 0px;
+    margin: 12px 8px 8px 8px;
+    width: 200px;
+    min-height: 200px;
+}
+
+.footer
+{
+    color: #4e5766;
+    padding: 8px 0px 0px 0px;
+    margin: 0px auto;
+    text-align: center;
+    line-height: normal;
+}
+
+fieldset
+{
+    margin: 1em 0px;
+    padding: 1em;
+    border: 1px solid #ccc;
+    border-radius: 2px; 
+}
+
+fieldset p 
+{
+    margin: 2px 12px 10px 10px;
+}
+
+fieldset.login label, fieldset.register label, fieldset.changePassword label
+{
+    display: block;
+}
+
+fieldset label.inline 
+{
+    display: inline;
+}
+
+legend 
+{
+    font-size: 1.1em;
+    font-weight: 600;
+    padding: 2px 4px 8px 4px;
+}
+
+input.textEntry 
+{
+    width: 320px;
+    border: 1px solid #ccc;
+}
+
+input.passwordEntry 
+{
+    width: 320px;
+    border: 1px solid #ccc;
+}
+
+div.accountInfo
+{
+    width: 45%;   
+}
+
+
+.clear
+{
+    clear: both;
+}
+
+.title
+{
+    display: block;
+    float: left;
+    text-align: left;
+    width: auto;
+}
+
+.loginDisplay
+{
+    font-size: 0.4em;
+    display: block;
+    text-align: left;
+    padding: 10px;
+    color: 4e5766;
+}
+
+.loginDisplay a:link
+{
+    color: 4e5766;
+}
+
+.loginDisplay a:visited
+{
+    color: 4e5766;
+}
+
+.loginDisplay a:hover
+{
+    color: 4e5766;
+}
+
+.failureNotification
+{
+    font-size: 1.2em;
+    color: Red;
+}
+
+.bold
+{
+    font-weight: bold;
+}
+
+.submitButton
+{
+    text-align: right;
+    padding-right: 10px;
+}
+
+
+.BoxStyle
+{
+    background-color: #FAFAFA;
+    background-repeat: repeat-x; 
+    padding: 0px 0px 0px 0px;
+    border-radius: 10px; 
+    border: 1px solid #E4E4E4; 
+    -moz-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); 
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.BoxShadow
+{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.TextBoxPage
+{
+font-family: Verdana, 'Helvetica Neue', Helvetica, Arial, Geneva, sans-serif;
+font-size: 12px;
+color: #424242;
+padding: 6px;
+border: 1px solid #CCC;
+outline: none;
+
+-moz-border-radius: 3px;
+-webkit-border-radius: 3px;
+border-radius: 3px;
+
+-moz-box-shadow: 0 1px 2px rgba(0, 0, 0, .15) inset;
+-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .15) inset;
+box-shadow: 0 1px 2px rgba(0, 0, 0, .15) inset;
+
+
+    text-align: left;
+}
+
+.TextBoxPage:focus
+{
+border: 1px solid #80bfff;
+
+-moz-box-shadow: 0 0 3px #80bfff, 0 1px 2px rgba(0, 0, 0, .15) inset;
+-webkit-box-shadow: 0 0 3px #80bfff, 0 1px 2px rgba(0, 0, 0, .15) inset;
+box-shadow: 0 0 3px #80bfff, 0 1px 2px rgba(0, 0, 0, .15) inset;
+}
+
+.buttonPage
+{
+    width:100px;
+    height:30px;
+    margin:0px 0px 0px 0px;
+    padding:0px 0px 0px 0px;
+    background-color:#2957c4;
+	border:0px solid #2957c4;
+	color:white;
+	overflow:hidden;
+	font-family:Arial; 
+    font-size:12px; 
+    font-weight:bold;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+   
+}
+
+.buttonNewDesign
+{
+    width:130px;
+    height:30px;
+    margin:0px 0px 0px 0px;
+    padding:0px 0px 0px 0px;
+    background-color:#2957c4;
+	border:0px solid #2957c4;
+	color:white;
+	overflow:hidden;
+	font-family:Arial; 
+    font-size:14px; 
+    font-weight:bold;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    
+}
+
+.buttonPage:hover
+{
+    border:0px solid #158930;
+    background-color:#B642EC;
+    
+}
+
+.buttonUpload
+{
+    width:75px;
+    height:27px;
+    margin:0px 0px 0px 0px;
+    padding:0px 0px 0px 0px;
+    background-color:#2957c4;
+	border:0px solid #2957c4;
+	color:white;
+	overflow:hidden;
+	font-family:Arial; 
+    font-size:12px; 
+    font-weight:bold;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+}
+
+.buttonUpload:hover
+{
+    border:0px solid #158930;
+    background-color:#3c4757;
+    
+}
+
+.hrStyle
+{
+    margin: 10px 0px 10px 0px;
+}
+
+.TableMenu
+{
+    background-color: #f9f9f9;
+    padding-left:10px;
+}
+
+   div { z-index: 9999; }
